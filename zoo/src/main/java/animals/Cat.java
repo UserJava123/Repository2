@@ -11,7 +11,7 @@ public class Cat extends Animal{
 
 	@Override
 	public void voice() {
-		File f = new File("C:\\Users\\Maciej Kapitan\\Documents\\workspace\\zoo\\src\\main\\java\\cat.mp3");
+		File f = new File("C:\\Users\\Maciej Kapitan\\git\\repository6\\zoo\\src\\main\\java\\cat.mp3");
 		Media audio;
 		System.out.println(f);
 		try {

@@ -9,7 +9,6 @@ import javafx.scene.shape.Path;
 
 public class Cat extends Animal{
 
-	@Override
 	public void voice() {
 		File f = new File("C:\\Users\\Maciej Kapitan\\git\\repository6\\zoo\\src\\main\\java\\cat.mp3");
 		Media audio;

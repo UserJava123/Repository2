@@ -27,7 +27,7 @@ public class App extends Application
 		
 		Scene scene = new Scene(box);
 		primarystage.setScene(scene);
-		primarystage.setTitle("Witaj JavaFX");
+		primarystage.setTitle("Witaj w Zoo");
 		primarystage.setResizable(true);
 		primarystage.show();
 		

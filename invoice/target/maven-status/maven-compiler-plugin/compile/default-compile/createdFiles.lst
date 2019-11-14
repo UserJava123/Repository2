@@ -1,0 +1,17 @@
+DAO\JpaInitializer.class
+fxController\MainViewController.class
+fxController\EditSellerController.class
+fxController\AddInvoiceController$1.class
+DAO\BuyerDAO.class
+entity\Buyer.class
+DAO\ProductDAO.class
+entity\Invoice.class
+entity\Product.class
+DAO\InvoiceDAO.class
+entity\Position.class
+mycompany\invoice\App.class
+entity\Seller.class
+fxController\InvoiceListController.class
+DAO\PositionDAO.class
+entity\UnitOfMesure.class
+fxController\AddInvoiceController.class

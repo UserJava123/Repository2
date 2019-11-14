@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="bpIndex" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxController.MainViewController">
+   <center>
+      <AnchorPane prefHeight="253.0" prefWidth="519.0" BorderPane.alignment="CENTER">
+      	<children>
+      		<fx:include source="invoiceList.fxml" />
+      	</children>
+      </AnchorPane>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="651.0" style="-fx-background-color: #e4dcfe;" text="Label" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <AnchorPane onMousePressed="#setSeller" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e4dcfe;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnEditSeller" layoutX="24.0" layoutY="74.0" mnemonicParsing="false" onAction="#openEditSeller" prefHeight="25.0" prefWidth="153.0" text="Edytuj Sprzedawcę" />
+            <Button fx:id="btnAddInvoice" layoutX="24.0" layoutY="113.0" mnemonicParsing="false" onAction="#addInvoice" prefHeight="25.0" prefWidth="154.0" text="Dodaj Fakturę" />
+            <Label alignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="60.0" prefWidth="152.0" text="Faktury Vat">
+               <font>
+                  <Font name="Impact" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="lName" alignment="CENTER" layoutX="23.0" layoutY="184.0" prefHeight="17.0" prefWidth="155.0" text="" />
+            <Label fx:id="lNip" alignment="CENTER" layoutX="23.0" layoutY="208.0" prefHeight="17.0" prefWidth="156.0" text="" />
+            <Label fx:id="lAdres" alignment="CENTER" layoutX="23.0" layoutY="242.0" prefHeight="71.0" prefWidth="156.0" text="" />
+            <Label alignment="CENTER" layoutX="23.0" layoutY="154.0" prefHeight="17.0" prefWidth="155.0" text="Dane Twojej Fimry:" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

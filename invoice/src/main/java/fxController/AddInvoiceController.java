@@ -183,10 +183,10 @@ public class AddInvoiceController implements Initializable{
 
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		buyerDAO = new BuyerDAO();
-		invoiceDAO = new InvoiceDAO();
-		positionDAO = new PositionDAO();
-		sellerDAO = new SellerDAO();
+		buyerDAO = BuyerDAO.getInstance();
+		invoiceDAO = InvoiceDAO.getInstance();
+		positionDAO = PositionDAO.getInstance();
+		sellerDAO = SellerDAO.getInstance();
 		
 		colLP.setCellValueFactory(
                 new PropertyValueFactory<entity.Position, Integer>("nr"));

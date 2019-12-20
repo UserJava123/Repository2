@@ -13,10 +13,16 @@ import entity.Position;
 public class PositionDAO {
 
 	private EntityManager em;
-	
-	public PositionDAO()
+	private static PositionDAO instance = new PositionDAO();
+
+	public static PositionDAO getInstance()
 	{
-		this.em = JpaInitializer.getEm();
+		return instance;
+	}
+	
+	private PositionDAO()
+	{
+		this.em = JpaInitializer.getInstance().getEm();
 	}
 	
 	public List<Position> getPositions(Invoice i)

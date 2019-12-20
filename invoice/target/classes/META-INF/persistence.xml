@@ -3,15 +3,51 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-<persistence-unit name="Lab1" transaction-type="RESOURCE_LOCAL">
+
+<persistence-unit name="worker" transaction-type="RESOURCE_LOCAL">
 <provider>org.hibernate.ejb.HibernatePersistence</provider>
 <class>entity.Buyer</class>
+<class>entity.Invoice</class>
+<class>entity.User</class>
+<class>entity.Position</class>
+<class>entity.Product</class>
+<properties>
+<property name="hibernate.connection.username" value="worker" />
+<property name="hibernate.connection.password" value="worker" />
+<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+<property name="hibernate.connection.url" value="jdbc:mysql://localhost/tplab2?characterEncoding=utf8" />
+<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+</properties>
+</persistence-unit>
+
+<persistence-unit name="accountant" transaction-type="RESOURCE_LOCAL">
+<provider>org.hibernate.ejb.HibernatePersistence</provider>
+<class>entity.Buyer</class>
+<class>entity.Invoice</class>
+<class>entity.User</class>
+<class>entity.Position</class>
+<class>entity.Product</class>
+<properties>
+<property name="hibernate.connection.username" value="accountant" />
+<property name="hibernate.connection.password" value="accountant" />
+<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+<property name="hibernate.connection.url" value="jdbc:mysql://localhost/tplab2?characterEncoding=utf8" />
+<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+</properties>
+</persistence-unit>
+
+<persistence-unit name="boss" transaction-type="RESOURCE_LOCAL">
+<provider>org.hibernate.ejb.HibernatePersistence</provider>
+<class>entity.Buyer</class>
+<class>entity.User</class>
 <class>entity.Invoice</class>
 <class>entity.Position</class>
 <class>entity.Product</class>
 <properties>
-<property name="hibernate.connection.username" value="root" />
-<property name="hibernate.connection.password" value="root" />
+<property name="hibernate.connection.username" value="boss" />
+<property name="hibernate.connection.password" value="boss" />
 <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 <property name="hibernate.connection.url" value="jdbc:mysql://localhost/tplab2?characterEncoding=utf8" />
 <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />

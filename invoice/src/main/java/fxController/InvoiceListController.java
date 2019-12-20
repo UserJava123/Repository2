@@ -110,8 +110,8 @@ public class InvoiceListController implements Initializable
 		colDelete.setCellValueFactory(
                 new PropertyValueFactory<Invoice, Hyperlink>("delete"));
 		
-		invoiceDAO = new InvoiceDAO();
-		positionDAO = new PositionDAO();
+		invoiceDAO = InvoiceDAO.getInstance();
+		positionDAO = PositionDAO.getInstance();
 		setInvoices(invoiceDAO.getInvoices());
 		tabInvoice.setItems(invoices);
 		

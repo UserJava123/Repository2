@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="seller")
 public class Seller{
-
+	
 	@Column(name="seller_name")
 	private String name;
 	@Id()
@@ -31,6 +31,7 @@ public class Seller{
 	private String type;
 	@OneToMany(mappedBy="buyer")
 	private List<Invoice> invoices;
+
 	public String getName() {
 		return name;
 	}

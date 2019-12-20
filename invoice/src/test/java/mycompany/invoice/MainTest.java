@@ -6,7 +6,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+import DAO.InvoiceDAO;
+import DAO.UserDAO;
+import entity.Invoice;
 import entity.Position;
+import entity.User;
 import junit.framework.Assert;
 import service.Calculator;
 import service.InvoiceService;
@@ -30,6 +34,12 @@ public class MainTest {
 	public void testFormatExistingInvoiceNumber()
 	{
 		Assert.assertEquals(InvoiceService.formatExistingInvoiceNumber(new BigDecimal(2019.000503).setScale(6,BigDecimal.ROUND_HALF_EVEN)),"FV/2019/000503");
+	}
+	
+	@Test
+	public void logTest()
+	{
+	
 	}
 	
 }

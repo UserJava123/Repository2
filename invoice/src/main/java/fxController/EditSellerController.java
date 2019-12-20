@@ -42,7 +42,7 @@ public class EditSellerController implements Initializable{
 	private Button btnSave;
 
 	public void initialize(URL location, ResourceBundle resources) {
-		sellerDAO = new SellerDAO();
+		sellerDAO = SellerDAO.getInstance();
 		if( sellerDAO.getSeller()!= null)
 		{
 			Seller s = sellerDAO.getSeller();

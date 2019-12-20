@@ -10,10 +10,16 @@ import entity.Seller;
 public class SellerDAO {
 
 	private EntityManager em;
+	private static SellerDAO instance = new SellerDAO();
 	
-	public SellerDAO()
+	public static SellerDAO getInstance()
 	{
-		this.em = JpaInitializer.getEm();
+		return instance;
+	}
+	
+	private SellerDAO()
+	{
+		this.em = JpaInitializer.getInstance().getEm();
 	}
 	
 	public Seller getSeller()

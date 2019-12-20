@@ -12,10 +12,16 @@ import entity.Invoice;
 public class BuyerDAO {
 
 	private EntityManager em;
+	private static BuyerDAO instance = new BuyerDAO();
 	
-	public BuyerDAO()
+	public static BuyerDAO getInstance()
 	{
-		this.em = JpaInitializer.getEm();
+		return instance;
+	}
+	
+	private BuyerDAO()
+	{
+		this.em = JpaInitializer.getInstance().getEm();
 	}
 	
 	public Buyer getBuyerByName(String name)

@@ -18,17 +18,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DAO.JpaInitializer;
 import DAO.SellerDAO;
 import entity.Seller;
+import entity.User;
+import entity.YourCompany;
 import javafx.event.ActionEvent;
 
 public class MainViewController implements Initializable{
 	
-	SellerDAO sellerDAO;
+	private YourCompany seller;
 	@FXML
-	BorderPane bpIndex;
-	@FXML
-	private Button btnEditSeller;
+	private BorderPane bpIndex;
 	@FXML
 	private Button btnAddInvoice;
 	@FXML
@@ -38,8 +39,10 @@ public class MainViewController implements Initializable{
 	@FXML
 	private Label lNip;
 	@FXML
+	private Label lUser;
+	@FXML
 	private Label lAdres;
-	private Seller seller;
+	private User user;
 
 	// Event Listener on Button[#btnAddInvoice].onAction
 	@FXML
@@ -60,21 +63,6 @@ public class MainViewController implements Initializable{
 		stage.show();
 	}
 	
-	@FXML
-	public void openEditSeller(ActionEvent e) throws IOException
-	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("newSeller.fxml"));
-
-		AnchorPane box = loader.load(); 
-		
-		Scene scene = new Scene(box);
-		
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.show();
-	}
-	
 	public void setSeller(MouseEvent e)
 	{
 		lName.setText(seller.getName());
@@ -84,8 +72,13 @@ public class MainViewController implements Initializable{
 
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		sellerDAO = new SellerDAO();
-		seller = sellerDAO.getSeller();
+		seller = YourCompany.getInstance();
 		setSeller(null);
+	}
+	
+	public void setUser(User user)
+	{
+		this.user = user;
+		lUser.setText("User:" + user.getLogin());
 	}
 }

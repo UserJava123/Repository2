@@ -4,9 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -48,19 +51,26 @@ public class MainViewController implements Initializable{
 	@FXML
 	public void addInvoice(ActionEvent event) throws IOException {
 		
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("newInvoice.fxml"));
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("newInvoice.fxml"));
 
-		VBox box = loader.load(); 
-
-		AddInvoiceController aic = loader.<AddInvoiceController>getController();
-		aic.initData(null);
+			VBox box = loader.load(); 
+			
+			AddInvoiceController aic = loader.<AddInvoiceController>getController();
+			aic.initData(null);
 		
-		Scene scene = new Scene(box);
+			Scene scene = new Scene(box);
 		
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.show();
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+		}
+		catch ( javax.persistence.RollbackException e)
+		{
+			Alert alert = new Alert(AlertType.ERROR, "Brak uprawnień do wykonania akcji", ButtonType.CANCEL);
+			alert.showAndWait();
+		}
 	}
 	
 	public void setSeller(MouseEvent e)

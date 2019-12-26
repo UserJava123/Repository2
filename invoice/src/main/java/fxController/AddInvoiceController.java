@@ -14,6 +14,7 @@ import entity.Buyer;
 import entity.Invoice;
 import entity.Position;
 import entity.Seller;
+import entity.YourCompany;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,7 +52,6 @@ public class AddInvoiceController implements Initializable{
 	PositionDAO positionDAO;
 	BuyerDAO buyerDAO;
 	InvoiceDAO invoiceDAO;
-	SellerDAO sellerDAO;
 	Invoice invoice;
 	BigDecimal nr;
 
@@ -186,7 +186,6 @@ public class AddInvoiceController implements Initializable{
 		buyerDAO = BuyerDAO.getInstance();
 		invoiceDAO = InvoiceDAO.getInstance();
 		positionDAO = PositionDAO.getInstance();
-		sellerDAO = SellerDAO.getInstance();
 		
 		colLP.setCellValueFactory(
                 new PropertyValueFactory<entity.Position, Integer>("nr"));
@@ -274,7 +273,6 @@ public class AddInvoiceController implements Initializable{
 		
 		invoice.setNumber(nr.add(new BigDecimal(LocalDate.now().getYear())));
 		invoice.setBuyer(b);
-		invoice.setSeller(sellerDAO.getSeller());
 		invoice.setAlreadyPaid(new BigDecimal(0));
 		invoice.setComments(tfComments.getText());
 		invoice.setDateOfInvoice(dpDateOfInvoice.getValue());
@@ -322,12 +320,11 @@ public class AddInvoiceController implements Initializable{
 	}
 	
 	public void setSellerLabels(){
-		Seller s = sellerDAO.getSeller();
-		if(s!=null) {
-		lSellerName.setText(s.getName());
-		lSellerNip.setText(s.getId());
-		lSellerAdres.setText(s.getCity() +  ", "+s.getStreet() + ", " + s.getPostCode());
-		}
+		
+		lSellerName.setText(YourCompany.getInstance().getName());
+		lSellerNip.setText(YourCompany.getInstance().getId());
+		lSellerAdres.setText(YourCompany.getInstance().getCity() +  ", "+YourCompany.getInstance().getStreet() + ", " + YourCompany.getInstance().getPostCode());
+
 	}
 	
 	public void searchBuyer(KeyEvent ke)

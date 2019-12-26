@@ -19,8 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
@@ -30,6 +32,7 @@ import service.InvoiceService;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 
@@ -202,12 +205,19 @@ public class InvoiceListController implements Initializable
 	
 	EventHandler<ActionEvent> delete = new EventHandler<ActionEvent>() {
 		public void handle(ActionEvent event) {
-			Hyperlink hl = (Hyperlink) event.getSource();
-			String id = hl.getId().substring(1);
-			Invoice i = invoiceDAO.getInvoiceById(id);
-			positionDAO.deleteByInvoice(i);
-			invoiceDAO.deleteInvoice(i);
-			setInvoices(invoiceDAO.getInvoices());
+			try 
+			{
+				Hyperlink hl = (Hyperlink) event.getSource();
+				String id = hl.getId().substring(1);
+				Invoice i = invoiceDAO.getInvoiceById(id);
+				invoiceDAO.deleteInvoice(i);
+				setInvoices(invoiceDAO.getInvoices());
+			}
+			catch ( javax.persistence.RollbackException e)
+			{
+				Alert alert = new Alert(AlertType.ERROR, "Brak uprawnień do wykonania akcji", ButtonType.CANCEL);
+				alert.showAndWait();
+			}
 		}
 	};
 }

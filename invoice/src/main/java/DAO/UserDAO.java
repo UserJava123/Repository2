@@ -1,7 +1,9 @@
 package DAO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
+import entity.Invoice;
 import entity.User;
 
 public class UserDAO {
@@ -25,5 +27,19 @@ public class UserDAO {
 				.setParameter("login", login)
 				.setParameter("password", password)
 				.getResultList().get(0);
+	}
+	
+	public void addUser(User u)
+	{
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		try {
+			em.persist(u);
+		}
+		catch(javax.persistence.EntityExistsException e)
+		{
+			return;
+		}
+		et.commit();
 	}
 }

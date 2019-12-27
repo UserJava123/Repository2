@@ -91,4 +91,43 @@ public class MainViewController implements Initializable{
 		this.user = user;
 		lUser.setText("User:" + user.getLogin());
 	}
+	
+	public void addUser(ActionEvent e) throws IOException
+	{
+		if(user.getType().equals("boss")) {
+		
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("addUser.fxml"));
+
+			AnchorPane box = loader.load(); 
+		
+			Scene scene = new Scene(box);
+			Stage primarystage = new Stage();
+			primarystage.setScene(scene);
+			primarystage.setTitle("Rejestracja");
+			primarystage.show();
+		}
+		else {
+			Alert alert = new Alert(AlertType.ERROR, "Brak uprawnień do wykonania akcji", ButtonType.CANCEL);
+			alert.showAndWait();
+		}
+	}
+	
+	public void logOut(ActionEvent e) throws IOException
+	{
+
+		Stage stage = (Stage) bpIndex.getScene().getWindow();
+		stage.close();
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("log.fxml"));
+
+		AnchorPane box = loader.load(); 
+
+		Scene scene = new Scene(box);
+		Stage primarystage = new Stage();
+		primarystage.setScene(scene);
+		primarystage.setTitle("Faktury");
+		primarystage.show();
+	}
 }

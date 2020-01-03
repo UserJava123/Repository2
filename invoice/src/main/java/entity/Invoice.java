@@ -34,9 +34,6 @@ public class Invoice {
 	@JoinColumn(name="buyer")
 	private Buyer buyer;
 	
-	@Transient
-	private Seller seller;
-	
 	@OneToMany(mappedBy="invoice")
 	private List<Position> positions;
 	
@@ -103,12 +100,7 @@ public class Invoice {
 	public void setBuyer(Buyer buyer) {
 		this.buyer = buyer;
 	}
-	public Seller getSeller() {
-		return seller;
-	}
-	public void setSeller(Seller seller) {
-		this.seller = seller;
-	}
+	
 	public List<Position> getPositions() {
 		return positions;
 	}

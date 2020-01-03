@@ -32,8 +32,6 @@ import java.util.ResourceBundle;
 import com.sun.javafx.logging.Logger;
 
 import DAO.JpaInitializer;
-import DAO.SellerDAO;
-import entity.Seller;
 import entity.User;
 import entity.YourCompany;
 import javafx.event.ActionEvent;
@@ -168,9 +166,7 @@ public class MainViewController implements Initializable{
         				"\"C:/Program Files/MySQL/MySQL Server 8.0/bin/mysqldump.exe\" "
         				+ "--user=\"root\" "
         				+ "--password=\"root\" tpLab2 "};
-        		String cmd = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\"
-        				+ "mysqldump.exe -u root -proot tpLab2 > " 
-        				+ file.getPath();
+        		
                 final Process p = Runtime.getRuntime().exec(command);
                 
                 if(p!=null) {
@@ -204,16 +200,20 @@ public class MainViewController implements Initializable{
         }
 	}
 	
-	public void restore(ActionEvent e)
+	public void restore(ActionEvent e) throws InterruptedException
 	{
 		if(!user.getType().equals("boss")) return;
 		FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog((Stage) bpIndex.getScene().getWindow());
         if (file != null) {
         	try {
-                Desktop.getDesktop().open(file);
-                if(file.getPath().endsWith(".sql"))
-                Runtime.getRuntime().exec("mysql -u root -proot tpLab2 < " + file.getPath());
+        		System.out.println(file.getPath());
+                if(file.getPath().endsWith(".sql")) {
+                	String[] executeCmd = {"mysql","tpLab2","--user=root","--password=root", "-e", " source " + file.getAbsolutePath()};
+                	Process p = Runtime.getRuntime().exec(executeCmd);
+                	int processComplete = p.waitFor();
+                	System.out.println(processComplete);
+                }
             } catch (IOException ex) {
                 
                     

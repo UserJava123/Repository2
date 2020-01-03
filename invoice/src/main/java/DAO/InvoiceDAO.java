@@ -97,4 +97,8 @@ public class InvoiceDAO {
 		em.remove(managed);
 		et.commit();
 	}
+	
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 }

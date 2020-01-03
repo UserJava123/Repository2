@@ -1,4 +1,4 @@
-package fxController;
+package mycompany.invoice;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +15,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.sun.javafx.logging.Logger;
 
 import DAO.JpaInitializer;
 import DAO.SellerDAO;
@@ -129,5 +139,85 @@ public class MainViewController implements Initializable{
 		primarystage.setScene(scene);
 		primarystage.setTitle("Faktury");
 		primarystage.show();
+	}
+	
+	public void showUsers(ActionEvent e) throws IOException
+	{
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("showUser.fxml"));
+
+		AnchorPane box = loader.load(); 
+
+		Scene scene = new Scene(box);
+		Stage primarystage = new Stage();
+		primarystage.setScene(scene);
+		primarystage.setTitle("Faktury");
+		primarystage.show();
+	}
+	
+	public void save(ActionEvent e) throws InterruptedException
+	{
+		if(!user.getType().equals("boss")) return;
+		FileChooser fileChooser = new FileChooser();
+		final File file = fileChooser.showSaveDialog((Stage) bpIndex.getScene().getWindow());
+        if (file != null) {
+        	try {
+        		System.out.println(file.getPath());
+        		String[] command = new String[] {"cmd.exe", "/c", 
+        				"\"C:/Program Files/MySQL/MySQL Server 8.0/bin/mysqldump.exe\" "
+        				+ "--user=\"root\" "
+        				+ "--password=\"root\" tpLab2 "};
+        		String cmd = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\"
+        				+ "mysqldump.exe -u root -proot tpLab2 > " 
+        				+ file.getPath();
+                final Process p = Runtime.getRuntime().exec(command);
+                
+                if(p!=null) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try{
+                                try(BufferedReader reader = new BufferedReader(new InputStreamReader(new DataInputStream(p.getInputStream()))); 
+                                    BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                                    String line;
+                                    while((line=reader.readLine())!=null)
+                                    { 
+                                        writer.write(line);
+                                        writer.newLine();
+                                    }
+                                }
+                            } catch(Exception ex){
+                                // handle or log exception ...
+                            }
+                        }
+                    }).start();
+                }
+                if(p!=null && p.waitFor()==0) {
+                    System.out.println("Sukces");
+                } else {
+                	System.out.println("Porażka");
+                }
+        	} catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+	}
+	
+	public void restore(ActionEvent e)
+	{
+		if(!user.getType().equals("boss")) return;
+		FileChooser fileChooser = new FileChooser();
+		File file = fileChooser.showOpenDialog((Stage) bpIndex.getScene().getWindow());
+        if (file != null) {
+        	try {
+                Desktop.getDesktop().open(file);
+                if(file.getPath().endsWith(".sql"))
+                Runtime.getRuntime().exec("mysql -u root -proot tpLab2 < " + file.getPath());
+            } catch (IOException ex) {
+                
+                    
+            }
+        }
 	}
 }

@@ -1,4 +1,4 @@
-package fxController;
+package mycompany.invoice;
 
 import java.math.BigDecimal;
 import java.net.URL;

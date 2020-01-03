@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bpIndex" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxController.MainViewController">
+<BorderPane fx:id="bpIndex" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.invoice.MainViewController">
    <center>
       <AnchorPane prefHeight="253.0" prefWidth="519.0" BorderPane.alignment="CENTER">
       	<children>
@@ -24,11 +24,13 @@
           	<items>
               <MenuItem mnemonicParsing="false" text="Wyloguj" onAction="#logOut" />
               <MenuItem mnemonicParsing="false" text="Nowy Użytkownik" onAction="#addUser"/>
+              <MenuItem mnemonicParsing="false" text="Zarzązaj kontami" onAction="#showUsers"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" text="Zapisz bazę danych"  onAction="#save"/>
+              <MenuItem mnemonicParsing="false" text="Wczytaj bazę danych" onAction="#restore" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

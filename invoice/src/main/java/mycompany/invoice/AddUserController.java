@@ -1,10 +1,13 @@
-package fxController;
+package mycompany.invoice;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import DAO.UserDAO;
 import entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 
-public class AddUserController {
+public class AddUserController implements Initializable{
 	@FXML
 	private AnchorPane an;
 	@FXML
@@ -40,5 +43,12 @@ public class AddUserController {
 		
 		Stage stage = (Stage) an.getScene().getWindow();
 		stage.close();
+	}
+
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		tfType.getItems().add("worker");
+		tfType.getItems().add("accountant");
+		tfType.getItems().add("boss");
 	}
 }

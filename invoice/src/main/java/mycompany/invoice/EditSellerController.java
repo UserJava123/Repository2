@@ -1,4 +1,4 @@
-package fxController;
+package mycompany.invoice;
 
 import java.io.IOException;
 import java.net.URL;

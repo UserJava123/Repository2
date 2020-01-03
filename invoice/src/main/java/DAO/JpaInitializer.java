@@ -5,9 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JpaInitializer {
+	
 //TODO
-//zamiast klasy i tableli seller zdefiniowac singleton ze stałymi
-//
+//zrobic funkcje usuwania użytkowników
+	
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("worker");
 	EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("accountant");
 	EntityManagerFactory emf3 = Persistence.createEntityManagerFactory("boss");

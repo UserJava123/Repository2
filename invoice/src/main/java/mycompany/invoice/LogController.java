@@ -14,11 +14,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import DAO.BuyerDAO;
+import DAO.InvoiceDAO;
 import DAO.JpaInitializer;
+import DAO.PositionDAO;
 import DAO.UserDAO;
 import entity.User;
-import fxController.AddInvoiceController;
-import fxController.MainViewController;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.PasswordField;
@@ -43,6 +44,10 @@ public class LogController {
 		User user = UserDAO.getInstance().getUserByLogin(login, password);
 		//TODO obsługa błędu jeśli user jest nullem
 		JpaInitializer.getInstance().setCompatibilityLevel(user.getType());
+		BuyerDAO.getInstance().setEm(JpaInitializer.getInstance().getEm());
+		InvoiceDAO.getInstance().setEm(JpaInitializer.getInstance().getEm());
+		PositionDAO.getInstance().setEm(JpaInitializer.getInstance().getEm());
+		UserDAO.getInstance().setEm(JpaInitializer.getInstance().getEm());
 		runIndexView(user);
 		}
 		catch(java.lang.IndexOutOfBoundsException e)

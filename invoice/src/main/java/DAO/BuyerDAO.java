@@ -66,4 +66,8 @@ public class BuyerDAO {
 		
 		et.commit();
 	}
+	
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 }

@@ -45,9 +45,15 @@ public class BuyerDAO {
 		else return null;
 	}
 	
+	public List<Buyer> getBuyersById(String id)
+	{
+		return (List<Buyer>) em.createQuery("SELECT b FROM entity.Buyer b WHERE name LIKE :name").setParameter("name",id).getResultList();
+	}
+	
+	
 	public List<Buyer> getBuyers()
 	{
-		ArrayList<Buyer> list = (ArrayList<Buyer>) em.createQuery("SELECT b FROM entity.Buyer b" ).getResultList();
+		ArrayList<Buyer> list = (ArrayList<Buyer>) em.createQuery("FROM entity.Buyer" ).getResultList();
 		return list;
 	}
 	
@@ -69,5 +75,19 @@ public class BuyerDAO {
 	
 	public void setEm(EntityManager em) {
 		this.em = em;
+	}
+
+	public List<Buyer> getBuyersByName(String name) {
+		// TODO Auto-generated method stub
+		return (List<Buyer>) em.createQuery("SELECT b FROM entity.Buyer b WHERE name LIKE :name").setParameter("name",name+"%").getResultList();
+	}
+
+	public void deleteBuyer(Buyer b) {
+		// TODO Auto-generated method stub
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		Object managed = em.merge(b);
+		em.remove(managed);
+		et.commit();
 	}
 }

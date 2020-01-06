@@ -173,6 +173,10 @@ public class AddInvoiceController implements Initializable{
 				{
 					((TextField) node).setEditable(false);
 				}
+				if (node instanceof Button)
+				{
+					((Button) node).setDisable(true);
+				}
 			}
 		}
 	}

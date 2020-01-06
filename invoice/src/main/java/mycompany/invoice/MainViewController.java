@@ -38,6 +38,8 @@ import javafx.event.ActionEvent;
 
 public class MainViewController implements Initializable{
 	
+	
+	//zrobic przelaczanie miedzy klientami i fakturami
 	private YourCompany seller;
 	@FXML
 	private BorderPane bpIndex;
@@ -59,7 +61,7 @@ public class MainViewController implements Initializable{
 	@FXML
 	public void addInvoice(ActionEvent event) throws IOException {
 		
-		try {
+		if(!user.getType().equals("worker")) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(this.getClass().getResource("newInvoice.fxml"));
 
@@ -74,11 +76,7 @@ public class MainViewController implements Initializable{
 			stage.setScene(scene);
 			stage.show();
 		}
-		catch ( javax.persistence.RollbackException e)
-		{
-			Alert alert = new Alert(AlertType.ERROR, "Brak uprawnień do wykonania akcji", ButtonType.CANCEL);
-			alert.showAndWait();
-		}
+
 	}
 	
 	public void setSeller(MouseEvent e)
@@ -219,5 +217,24 @@ public class MainViewController implements Initializable{
                     
             }
         }
+	}
+	
+	public void addBuyer(ActionEvent e) throws IOException
+	{
+		if(!user.getType().equals("worker")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("newBuyer.fxml"));
+
+			AnchorPane box = loader.load(); 
+			
+			AddInvoiceController aic = loader.<AddInvoiceController>getController();
+			aic.initData(null);
+		
+			Scene scene = new Scene(box);
+		
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+		}
 	}
 }

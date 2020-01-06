@@ -20,7 +20,7 @@
           <TableColumn fx:id="colBrutto" minWidth="7.33331298828125" prefWidth="80.66668701171875" text="Suma Brutto" />
           <TableColumn fx:id="colPaid" minWidth="0.0" prefWidth="74.66668701171875" text="Zapłacone" />
           <TableColumn fx:id="colDate" prefWidth="108.66668701171875" text="Data Wystawienia" />
-            <TableColumn fx:id="colDelete" prefWidth="55.0" text="Usuń" />
+          <TableColumn fx:id="colDelete" prefWidth="55.0" text="Usuń" />
         </columns>
       </TableView>
       <Button fx:id="btnDeleteFiltr" layoutX="536.0" layoutY="27.0" mnemonicParsing="false" onAction="#deleteFiltr" prefHeight="25.0" prefWidth="29.0" text="X" />

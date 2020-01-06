@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:controller="mycompany.invoice.AddBuyerController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="173.0" layoutY="32.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfName" />
+      <TextField layoutX="173.0" layoutY="69.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfNip"/>
+      <TextField layoutX="173.0" layoutY="109.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfCity"/>
+      <TextField layoutX="173.0" layoutY="149.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfStreet" />
+      <TextField layoutX="173.0" layoutY="188.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfCode"/>
+      <TextField layoutX="173.0" layoutY="230.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfState"/>
+      <TextField layoutX="173.0" layoutY="268.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfNrTel"/>
+      <TextField layoutX="173.0" layoutY="307.0" prefHeight="25.0" prefWidth="203.0" fx:id="tfEmail"/>
+      <ComboBox layoutX="173.0" layoutY="346.0" prefHeight="25.0" prefWidth="203.0" fx:id="cbType"/>
+      <Button layoutX="173.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="203.0" text="Dodaj" onAction="#addBuyer"/>
+   </children>
+</AnchorPane>

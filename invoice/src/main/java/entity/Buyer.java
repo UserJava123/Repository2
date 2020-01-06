@@ -117,7 +117,7 @@ public class Buyer {
 	}
 	public void setBuyerLink() {
 		buyerLink = new Hyperlink(id);
-		buyerLink.setId(this.getId().toString());
+		buyerLink.setId(id);
 	}
 	public Hyperlink getDelete() {
 		return delete;

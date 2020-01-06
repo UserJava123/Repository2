@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import service.InvoiceService;
@@ -37,6 +38,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 
 public class BuyerListController implements Initializable{
+	
+	//Dodac odświeżanie widoku po edycji
 	
 	private ObservableList<entity.Buyer> buyers =
 	        FXCollections.observableArrayList();
@@ -111,10 +114,8 @@ public class BuyerListController implements Initializable{
 		setBuyers(BuyerDAO.getInstance().getBuyers());
 		tabBuyer.setItems(buyers);
 		
-		filters.add("Nazwa Nabywcy");
-		filters.add("Nr Faktury");
+		filters.add("Nazwa");
 		filters.add("Nip/Pesel");
-		filters.add("Data");
 		
 		choiceFiltr.setItems(filters);
 	}
@@ -140,6 +141,7 @@ public class BuyerListController implements Initializable{
 	public void deleteFiltr(ActionEvent e)
 	{
 		setBuyers(BuyerDAO.getInstance().getBuyers());
+		tabBuyer.setItems(buyers);
 	}
 	
 	@FXML
@@ -161,12 +163,12 @@ public class BuyerListController implements Initializable{
 	public void openEdit(Buyer b) throws IOException
 	{		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("newInvoice.fxml"));
+		loader.setLocation(this.getClass().getResource("addBuyer.fxml"));
 
-		VBox box = loader.load(); 
+		AnchorPane box = loader.load(); 
 
-		AddInvoiceController aic = loader.<AddInvoiceController>getController();
-		//aic.initData(b);
+		AddBuyerController aic = loader.<AddBuyerController>getController();
+		aic.initData(b);
 			
 		Scene scene = new Scene(box);			
 		Stage stage = new Stage();
@@ -178,9 +180,10 @@ public class BuyerListController implements Initializable{
 		public void handle(ActionEvent event) {
 			Hyperlink hl = (Hyperlink) event.getSource();
 			Buyer b=BuyerDAO.getInstance().getBuyerById(hl.getId());
+			System.out.println(b);
 			try {
 				openEdit(b);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

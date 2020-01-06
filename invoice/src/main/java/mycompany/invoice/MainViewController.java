@@ -223,12 +223,9 @@ public class MainViewController implements Initializable{
 	{
 		if(!user.getType().equals("worker")) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(this.getClass().getResource("newBuyer.fxml"));
+			loader.setLocation(this.getClass().getResource("addBuyer.fxml"));
 
 			AnchorPane box = loader.load(); 
-			
-			AddInvoiceController aic = loader.<AddInvoiceController>getController();
-			aic.initData(null);
 		
 			Scene scene = new Scene(box);
 		

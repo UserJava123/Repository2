@@ -15,7 +15,7 @@
 
 <VBox fx:id="vb" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.invoice.AddInvoiceController">
    <children>
-      <AnchorPane fx:id="anchorPane" prefHeight="257.0" prefWidth="909.0">
+      <AnchorPane fx:id="anchorPane" prefHeight="287.0" prefWidth="948.0">
          <children>
          	<TextField fx:id="tfInvoiceNr" layoutX="427.0" layoutY="13.0" prefHeight="25.0" prefWidth="179.0" />
         	<TextField fx:id="tfBuyerName" layoutX="124.0" layoutY="87.0" onKeyPressed="#searchBuyer" prefHeight="25.0" prefWidth="179.0" />
@@ -25,7 +25,7 @@
             <TextField fx:id="tfBuyerStreet" layoutX="427.0" layoutY="49.0" prefHeight="25.0" prefWidth="179.0" />
             <TextField fx:id="tfBuyerCity" layoutX="427.0" layoutY="84.0" prefHeight="25.0" prefWidth="179.0" />
             <TextField fx:id="tfBuyerCode" layoutX="427.0" layoutY="119.0" prefHeight="25.0" prefWidth="179.0" />
-            <TextField fx:id="tfComments" layoutX="426.0" layoutY="153.0" prefHeight="25.0" prefWidth="179.0" />
+            <TextField fx:id="tfComments" layoutX="428.0" layoutY="153.0" prefHeight="25.0" prefWidth="179.0" />
             <TextField fx:id="tfPlaceOfInvoice" layoutX="736.0" layoutY="49.0" prefHeight="25.0" prefWidth="174.0" />
             <DatePicker fx:id="dpDateOfInvoice" layoutX="736.0" layoutY="84.0" />
             <DatePicker fx:id="dpDateOfPayment" layoutX="736.0" layoutY="119.0" />
@@ -36,9 +36,9 @@
             <Label layoutX="322.0" layoutY="84.0" prefHeight="25.0" prefWidth="105.0" text="Miasto Nabywcy" />
             <Label layoutX="322.0" layoutY="119.0" prefHeight="25.0" prefWidth="105.0" text="Kod Pocztowy" />
             <Label layoutX="28.0" layoutY="153.0" prefHeight="25.0" prefWidth="87.0" text="Kraj Nabywcy" />
-	        <Label layoutX="620.0" layoutY="84.0" prefHeight="25.0" prefWidth="97.0" text="Data Wystawienia" />
+	        <Label layoutX="620.0" layoutY="84.0" prefHeight="25.0" prefWidth="97.0" text="Data Dokumentu" />
             <Label layoutX="620.0" layoutY="49.0" prefHeight="25.0" prefWidth="112.0" text="Miejsce Wystawienia" />
-            <Label layoutX="620.0" layoutY="119.0" prefHeight="25.0" prefWidth="97.0" text="Data Płatności" />
+            <Label layoutX="620.0" layoutY="119.0" prefHeight="25.0" prefWidth="97.0" text="Termin Płatności" />
             <Label layoutX="620.0" layoutY="153.0" prefHeight="25.0" prefWidth="87.0" text="Data Sprzedaży" />
             <Label layoutX="314.0" layoutY="13.0" prefHeight="25.0" prefWidth="112.0" text="Faktura VAT nr:">
                <font>
@@ -50,17 +50,23 @@
             <Label fx:id="lSellerNip" layoutX="28.0" layoutY="32.0" prefHeight="17.0" prefWidth="247.0" text="Nip: 000000000" />
             <Label fx:id="lSellerAdres" layoutX="27.0" layoutY="49.0" prefHeight="17.0" prefWidth="193.0" text="Miasto ulica kod" />
             <Line endX="176.66665649414062" endY="0.33333587646484375" layoutX="124.0" layoutY="73.0" startX="-96.99999237060547" startY="0.33333587646484375" />
+            <TextField fx:id="tfNrTel" layoutX="124.0" layoutY="186.0" prefHeight="25.0" prefWidth="179.0" />
+            <TextField fx:id="tfEmail" layoutX="428.0" layoutY="186.0" prefHeight="25.0" prefWidth="179.0" />
+            <Label layoutX="27.0" layoutY="190.0" prefHeight="17.0" prefWidth="97.0" text="Telefon Nabywcy" />
+            <Label layoutX="322.0" layoutY="190.0" prefHeight="17.0" prefWidth="87.0" text="Email Nabywcy" />
+            <ChoiceBox layoutX="736.0" layoutY="186.0" prefHeight="25.0" prefWidth="174.0" />
+            <Label layoutX="620.0" layoutY="190.0" prefHeight="17.0" prefWidth="112.0" text="Środek płatności" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tablePositions" prefHeight="323.0" prefWidth="909.0">
+      <TableView fx:id="tablePositions" prefHeight="319.0" prefWidth="948.0">
         <columns>
           	<TableColumn fx:id="colLP" prefWidth="51.33334481716156" text="L.P." />
           	<TableColumn fx:id="colName" minWidth="0.0" prefWidth="257.3333320617676" text="Nazwa Towaru" />
             <TableColumn fx:id="colJM" prefWidth="66.0" text="J.M." />
             <TableColumn fx:id="colQuantity" prefWidth="76.6666259765625" text="Ilość" />
             <TableColumn fx:id="colPrice" prefWidth="74.00009155273438" text="Cena netto" />
-            <TableColumn fx:id="colVat" prefWidth="58.666748046875" text="Vat" />
-            <TableColumn fx:id="colNettoSum" prefWidth="96.6666259765625" text="Wartość Netto" />
+            <TableColumn fx:id="colVat" prefWidth="69.3333740234375" text="Stawka Vat" />
+            <TableColumn fx:id="colNettoSum" prefWidth="86.6666259765625" text="Wartość Netto" />
             <TableColumn fx:id="colVatSum" prefWidth="90.66668701171875" text="Wartość Vat" />
             <TableColumn fx:id="colBruttoSum" prefWidth="92.66668701171875" text="Wartość Brutto" />
             <TableColumn fx:id="colDelete" text="Usuń" />
@@ -73,7 +79,7 @@
          	<Label layoutX="253.0" layoutY="43.0" prefHeight="17.0" prefWidth="77.0" text="Ilość" />
          	<Label layoutX="330.0" layoutY="43.0" prefHeight="17.0" prefWidth="68.0" text="Cena netto" />
          	<Label layoutX="405.0" layoutY="43.0" prefHeight="17.0" prefWidth="68.0" text="Stawka Vat" />          
-            <TextField fx:id="tfProductName" layoutX="14.0" layoutY="14.0"  />
+            <TextField fx:id="tfProductName" layoutX="14.0" layoutY="14.0" />
             <TextField fx:id="tfJM" layoutX="176.0" layoutY="14.0" prefHeight="25.0" prefWidth="68.0" />
             <TextField fx:id="tfQuantity" layoutX="253.0" layoutY="14.0" prefHeight="25.0" prefWidth="68.0" />
             <TextField fx:id="tfPrice" layoutX="329.0" layoutY="14.0" prefHeight="25.0" prefWidth="68.0" />
@@ -87,7 +93,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label fx:id="errorLabel" layoutX="14.0" layoutY="82.0" prefHeight="25.0" prefWidth="363.0"  />
+            <Label fx:id="errorLabel" layoutX="14.0" layoutY="82.0" prefHeight="25.0" prefWidth="363.0" />
             <Label fx:id="lBruttoSum" layoutX="779.0" layoutY="14.0" prefHeight="25.0" prefWidth="68.0" text="0.0">
                <font>
                   <Font name="System Bold" size="13.0" />

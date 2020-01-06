@@ -11,6 +11,6 @@
       <TextField layoutX="67.0" layoutY="113.0" prefHeight="25.0" prefWidth="241.0" fx:id="tfLogin" />
       <TextField layoutX="67.0" layoutY="159.0" prefHeight="25.0" prefWidth="241.0" fx:id="tfPassword"/>
       <ChoiceBox layoutX="67.0" layoutY="200.0" prefHeight="25.0" prefWidth="241.0" fx:id="tfType"/>
-      <Button layoutX="67.0" layoutY="242.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="241.0" text="btnAdd" onAction="#addUser"/>
+      <Button layoutX="67.0" layoutY="242.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="241.0" text="Dodaj" onAction="#addUser"/>
    </children>
 </AnchorPane>

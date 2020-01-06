@@ -33,7 +33,7 @@ import service.Calculator;
 import service.InvoiceService;
 import service.PositionLinkDeleteService;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.Labeled;
 import javafx.scene.control.CheckBox;
 
 import javafx.scene.control.DatePicker;
@@ -136,6 +136,10 @@ public class AddInvoiceController implements Initializable{
 	private Label lBruttoSum;
 	@FXML
 	private Label lSellerName,lSellerNip,lSellerAdres;
+	@FXML
+	private TextField tfEmail;
+	@FXML
+	private TextField tfNrTel;
 
 	
 	
@@ -226,6 +230,7 @@ public class AddInvoiceController implements Initializable{
 	
 	public void addPosition(ActionEvent e)
 	{
+		if(isNew) {
 		//tutaj dodaję na razie tylko do tabeli nie do bazy
 		errorLabel.setText(" ");
 		entity.Position p = new entity.Position();
@@ -249,7 +254,7 @@ public class AddInvoiceController implements Initializable{
 		positions.add(p);
 		tablePositions.setItems(positions);
 		countSum();
-		
+		}
 	}
 	
 	public void persist()
@@ -271,6 +276,8 @@ public class AddInvoiceController implements Initializable{
 		b.setCity(tfBuyerCity.getText());
 		b.setStreet(tfBuyerStreet.getText());
 		b.setPostCode(tfBuyerCode.getText());
+		b.setEmail(tfEmail.getText());
+		b.setNr_tel(tfNrTel.getText());
 		b.setType(cobBuyerType.getValue().toString());
 		
 		invoice.setNumber(nr.add(new BigDecimal(LocalDate.now().getYear())));
@@ -336,6 +343,11 @@ public class AddInvoiceController implements Initializable{
 				Buyer b = buyerDAO.getBuyerByName(tfBuyerName.getText());
 				setBuyer(b);
 			}
+			else if(!tfBuyerNip.equals(""))
+			{
+				Buyer b = buyerDAO.getBuyerById(tfBuyerNip.getText());
+				setBuyer(b);
+			}
 			else {
 				clearBuyer();
 			}
@@ -350,6 +362,8 @@ public class AddInvoiceController implements Initializable{
 		tfBuyerStreet.setText(b.getStreet());
 		tfBuyerCode.setText(b.getPostCode());
 		tfBuyerState.setText(b.getState());
+		tfNrTel.setText(b.getNr_tel());
+		tfEmail.setText(b.getEmail());
 		cobBuyerType.setValue(b.getType());
 	}
 	
